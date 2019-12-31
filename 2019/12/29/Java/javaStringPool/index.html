@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Java Byte Code로 본 String | SightStudio</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="java,String Pool" />
+    
+    <meta name="description" content="알면 좋고 몰라도 상관없는 글연관된 주제  Object의 Equality와 Identity Java String Pool Java Byte Code  다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.12345678910111213141516171819202122232425262728293031323334353637383940414243public">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Byte Code로 본 String">
+<meta property="og:url" content="https://sightstudio.github.io/2019/12/29/Java/javaStringPool/index.html">
+<meta property="og:site_name" content="SightStudio">
+<meta property="og:description" content="알면 좋고 몰라도 상관없는 글연관된 주제  Object의 Equality와 Identity Java String Pool Java Byte Code  다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.12345678910111213141516171819202122232425262728293031323334353637383940414243public">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sightstudio.github.io/asset/img/other/java/string-pool-img.png">
+<meta property="article:published_time" content="2019-12-29T06:14:48.000Z">
+<meta property="article:modified_time" content="2019-12-31T07:50:16.023Z">
+<meta property="article:author" content="Sight">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="String Pool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sightstudio.github.io/asset/img/other/java/string-pool-img.png">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog for eternal record</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Java/">Java</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Java/javaStringPool" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java Byte Code로 본 String
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/2019/12/29/Java/javaStringPool/" class="article-date">
+         <time datetime="2019-12-29T06:14:48.000Z" itemprop="datePublished">2019-12-29</time>
+      </a>
+    </div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/String-Pool/" rel="tag">String Pool</a>, <a class="tag-link" href="/tags/java/" rel="tag">java</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h6 id="알면-좋고-몰라도-상관없는-글"><a href="#알면-좋고-몰라도-상관없는-글" class="headerlink" title="알면 좋고 몰라도 상관없는 글"></a>알면 좋고 몰라도 상관없는 글</h6><p><strong>연관된 주제</strong></p>
+<ul>
+<li><strong>Object의 Equality와 Identity</strong></li>
+<li><strong>Java String Pool</strong></li>
+<li><strong>Java Byte Code</strong></li>
+</ul>
+<h5 id="다음-사진의-정답을-아신다면-이글은-넘어가도-될-듯-하다"><a href="#다음-사진의-정답을-아신다면-이글은-넘어가도-될-듯-하다" class="headerlink" title="다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다."></a>다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> String fString = <span class="string">"string"</span>;</span><br><span class="line">        String       vString = <span class="string">"string"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + <span class="string">"string"</span> == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="keyword">new</span> String(<span class="string">"assert_string"</span>).intern() == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + <span class="keyword">new</span> String(<span class="string">"string"</span>) == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + fString == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + vString == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">               <span class="string">"assert_"</span>.concat(<span class="string">"string"</span>) == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">               <span class="keyword">new</span> String(<span class="string">"assert_string"</span>).equals(<span class="string">"assert_string"</span>)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="정답"><a href="#정답" class="headerlink" title="정답"></a>정답</h5><ol>
+<li>true</li>
+<li>true</li>
+<li>false</li>
+<li>true</li>
+<li>false</li>
+<li>false</li>
+<li>true</li>
+</ol>
+<hr>
+<p>목차.<br><a href="#item1">1. 자바의 String Pool</a><br><a href="#item2">2. 사진 설명</a><br><a href="#item3">3. 바이트코드 - 어떻게 컴파일된거야</a></p>
+<h2 id="1-String-Pool"><a href="#1-String-Pool" class="headerlink" title="1. String Pool"></a><span id="item1">1. String Pool</span></h2><p><img src="/asset/img/other/java/string-pool-img.png" alt="자바의 String Pool"></p>
+<p>잘 알려진 사실이지만 <strong>자바의 String은 Immutable합니다.</strong><br>자바에서 한번 assign된 문자열은 수정될 수 없으며, 문자열을 수정하면</p>
+<p><strong>기존의 문자열을 수정하는것이 아닌, 새로운 문자열을 만든다.</strong></p>
+<p>그렇기 때문에 자바에서는 동일한 문자열을 생성할때 드는 메모리, 생성 시간을 줄이기 위해<br>생성된 스트링 리터럴을 <strong>String Pool</strong>이라는 곳에 저장한다.<br>즉, String Pool에 있는 문자열이면 재사용하고, 없을 때만 새로운 문자열 객체를 만든다. 캐싱과 같은 개념이다.</p>
+<ul>
+<li>이러한 형태를 디자인 패턴에서는 <a href="#see-also">Flyweight Pattern</a>이라고도 한다. </li>
+<li>String Pool의 위치는 JVM 구현체에 따라 다르다. eg. <strong>Hotspot VM, GrralVM</strong></li>
+<li>String이 아닌 </li>
+</ul>
+<p>하지만, 우리가 new 연산자를 사용하여 문자열을 만들 경우에는 String Pool에 저장되지 않는다.<br>반대로 String 클래스의 <strong>intern()</strong> 메소드를 사용하면, String Pool 밖에 있는 문자열 객체를<br>String Pool에 저장 할 수 있다.</p>
+<p>예시)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object의 identity 비교 (주소값)</span></span><br><span class="line">String innerPool = <span class="string">"sight"</span>;                 <span class="comment">// String Pool에 저장 O</span></span><br><span class="line">String outerPool = <span class="keyword">new</span> String(<span class="string">"sight"</span>);     <span class="comment">// String Pool에 저장 X</span></span><br><span class="line"></span><br><span class="line">innerPool == outerPool;         <span class="comment">// false - 서로 다른 주소에 위치</span></span><br><span class="line">outerPool = outerPool.intern(); <span class="comment">// 힙 영역에 있는 일반 문자열을 String Pool에 저장</span></span><br><span class="line">innerPool == outerPool;         <span class="comment">// true  - 서로 같은 주소에 위치</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-사진-설명"><a href="#2-사진-설명" class="headerlink" title="2. 사진 설명"></a><span id="item2">2. 사진 설명</span></h2><h5 id="컴파일러는-컴파일시-변경의-여지가-없는-값은-미리-합쳐놓는다-String-리터럴-final-상수"><a href="#컴파일러는-컴파일시-변경의-여지가-없는-값은-미리-합쳐놓는다-String-리터럴-final-상수" class="headerlink" title="컴파일러는 컴파일시 변경의 여지가 없는 값은 미리 합쳐놓는다. (String 리터럴, final 상수)"></a>컴파일러는 컴파일시 변경의 여지가 없는 값은 미리 합쳐놓는다. (String 리터럴, final 상수)</h5><h6 id="사실-equals-만-쓰면-만날일-없는-문제…-Object의-Equality를-비교하자"><a href="#사실-equals-만-쓰면-만날일-없는-문제…-Object의-Equality를-비교하자" class="headerlink" title="사실 .equals() 만 쓰면 만날일 없는 문제… ( Object의 Equality를 비교하자 )"></a>사실 .equals() 만 쓰면 만날일 없는 문제… ( Object의 Equality를 비교하자 )</h6><ol>
+<li><strong>“assert_” + “string” == “assert_string”</strong><br> -&gt; 좌변을 컴파일러가 합쳐서 String Pool에 저장한다. = <strong>true</strong></li>
+</ol>
+<ol start="2">
+<li><strong>new String(“assert_string”).intern() == “assert_string”</strong><br>-&gt; 힙에 생성된 new String을 String Pool에 집어 넣는다. = <strong>true</strong></li>
+</ol>
+<ol start="3">
+<li><strong>“assert_” + new String(“string”) == “assert_string”</strong><br> -&gt;  java 8 이하에서는 컴파일러가 StringBuilder로<br> 그리고 java 9 이후에는 StringConcatFactory.makeConcatWithConstants​로 변환한다.<br> -&gt; 모두 새로운 String 리턴 = <strong>true</strong></li>
+</ol>
+<ol start="4">
+<li><strong>“assert_” + fString == “assert_string”</strong><br> -&gt; 변경의 여지가 없으므로 컴파일러가 컴파일시 합쳐서 String Pool에 저장한다. = <strong>true</strong></li>
+</ol>
+<ol start="5">
+<li><strong>“assert_” + vString == “assert_string”</strong><br> -&gt; 3번과 동일하다. = <strong>false</strong></li>
+</ol>
+<ol start="6">
+<li><strong>“assert_”.concat(“string”) == “assert_string”</strong><br> -&gt; String.concat 내부에서 new String을 리턴한다. = <strong>false</strong></li>
+</ol>
+<h2 id="3-바이트코드-어떻게-컴파일된거야"><a href="#3-바이트코드-어떻게-컴파일된거야" class="headerlink" title="3. 바이트코드 - 어떻게 컴파일된거야"></a><span id="item3">3. 바이트코드 - 어떻게 컴파일된거야</span></h2><p>다음은 위의 코드가 컴파일 된 바이트코드입니다. <strong>JDK 11 기준</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// class version 55.0 (55)</span></span><br><span class="line"><span class="comment">// access flags 0x21</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// compiled from: Main2.java</span></span><br><span class="line">  <span class="comment">// access flags 0x19</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> INNERCLASS java/lang/invoke/MethodHandles$Lookup java/lang/invoke/MethodHandles Lookup</span><br><span class="line"></span><br><span class="line">  <span class="comment">// access flags 0x1</span></span><br><span class="line">  <span class="keyword">public</span> &lt;init&gt;()V</span><br><span class="line">   L0</span><br><span class="line">    LINENUMBER <span class="number">1</span> L0</span><br><span class="line">    ALOAD <span class="number">0</span></span><br><span class="line">    INVOKESPECIAL java/lang/Object.&lt;init&gt; ()V</span><br><span class="line">    RETURN</span><br><span class="line">   L1</span><br><span class="line">    LOCALVARIABLE <span class="keyword">this</span> LMain2; L0 L1 <span class="number">0</span></span><br><span class="line">    MAXSTACK = <span class="number">1</span></span><br><span class="line">    MAXLOCALS = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// access flags 0x9</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="title">main</span><span class="params">([Ljava/lang/String;)</span>V</span></span><br><span class="line"><span class="function">   L0</span></span><br><span class="line"><span class="function">    LINENUMBER 5 L0</span></span><br><span class="line"><span class="function">    LDC "string"      <span class="comment">// Constant Pool에 "string" 저장</span></span></span><br><span class="line"><span class="function">    ASTORE 1</span></span><br><span class="line"><span class="function">   L1</span></span><br><span class="line"><span class="function">    LINENUMBER 6 L1</span></span><br><span class="line"><span class="function">    LDC "string"      <span class="comment">// Constant Pool에 "string" 저장</span></span></span><br><span class="line"><span class="function">    ASTORE 2</span></span><br><span class="line"><span class="function">   L2</span></span><br><span class="line"><span class="function">    LINENUMBER 9 L2</span></span><br><span class="line"><span class="function">    GETSTATIC java/lang/System.out : Ljava/io/PrintStream</span>;</span><br><span class="line">    ICONST_1</span><br><span class="line">    INVOKEVIRTUAL java/io/PrintStream.println (Z)V</span><br><span class="line">   L3</span><br><span class="line">    LINENUMBER <span class="number">14</span> L3</span><br><span class="line">    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;</span><br><span class="line">    NEW java/lang/String</span><br><span class="line">    DUP</span><br><span class="line">    LDC <span class="string">"assert_string"</span></span><br><span class="line">    INVOKESPECIAL java/lang/String.&lt;init&gt; (Ljava/lang/String;)V</span><br><span class="line">   L4</span><br><span class="line">    LINENUMBER <span class="number">15</span> L4</span><br><span class="line">    INVOKEVIRTUAL java/lang/String.intern ()Ljava/lang/String;</span><br><span class="line">    LDC <span class="string">"assert_string"</span></span><br><span class="line">    IF_ACMPNE L5</span><br><span class="line">    ICONST_1</span><br><span class="line">    GOTO L6</span><br><span class="line">   L5</span><br><span class="line">   FRAME FULL [[Ljava/lang/String; java/lang/String java/lang/String] [java/io/PrintStream]</span><br><span class="line">    ICONST_0</span><br><span class="line">   L6</span><br><span class="line">    LINENUMBER <span class="number">14</span> L6</span><br><span class="line">   FRAME FULL [[Ljava/lang/String; java/lang/String java/lang/String] [java/io/PrintStream I]</span><br><span class="line">    INVOKEVIRTUAL java/io/PrintStream.println (Z)V</span><br><span class="line">   L7</span><br><span class="line">    LINENUMBER <span class="number">19</span> L7</span><br><span class="line">    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;</span><br><span class="line">    NEW java/lang/String</span><br><span class="line">    DUP</span><br><span class="line">    LDC <span class="string">"string"</span></span><br><span class="line">    INVOKESPECIAL java/lang/String.&lt;init&gt; (Ljava/lang/String;)V</span><br><span class="line">    <span class="function">INVOKEDYNAMIC <span class="title">makeConcatWithConstants</span><span class="params">(Ljava/lang/String;)</span>Ljava/lang/String</span>; [</span><br><span class="line">      <span class="comment">// handle kind 0x6 : INVOKESTATIC</span></span><br><span class="line">      java/lang/invoke/StringConcatFactory.makeConcatWithConstants(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;</span><br><span class="line">      <span class="comment">// arguments:</span></span><br><span class="line">      <span class="string">"assert_\u0001"</span></span><br><span class="line">    ]</span><br><span class="line">    LDC <span class="string">"assert_string"</span></span><br><span class="line">    IF_ACMPNE L8</span><br><span class="line">    ICONST_1</span><br><span class="line">    GOTO L9</span><br><span class="line">   L8</span><br><span class="line">   FRAME SAME1 java/io/PrintStream</span><br><span class="line">    ICONST_0</span><br><span class="line">   L9</span><br><span class="line">   FRAME FULL [[Ljava/lang/String; java/lang/String java/lang/String] [java/io/PrintStream I]</span><br><span class="line">    INVOKEVIRTUAL java/io/PrintStream.println (Z)V</span><br><span class="line">   L10</span><br><span class="line">    LINENUMBER <span class="number">24</span> L10   <span class="comment">// 4번 "string" + final</span></span><br><span class="line">    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;</span><br><span class="line">    ICONST_1  <span class="comment">// [중요] final로 지정된 값은 변경의 여지가 없지 때문에 미리 컴파일러가 합쳐버리고 상수풀에 집어넣는다.</span></span><br><span class="line">    INVOKEVIRTUAL java/io/PrintStream.println (Z)V</span><br><span class="line">   L11</span><br><span class="line">    LINENUMBER <span class="number">29</span> L11   <span class="comment">// 5번 "string" + String 변수</span></span><br><span class="line">    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;</span><br><span class="line">    ALOAD <span class="number">2</span></span><br><span class="line">    <span class="function">INVOKEDYNAMIC <span class="title">makeConcatWithConstants</span><span class="params">(Ljava/lang/String;)</span>Ljava/lang/String</span>; [</span><br><span class="line">      <span class="comment">// handle kind 0x6 : INVOKESTATIC</span></span><br><span class="line">      java/lang/invoke/StringConcatFactory.makeConcatWithConstants(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;</span><br><span class="line">      <span class="comment">// arguments:</span></span><br><span class="line">      <span class="string">"assert_\u0001"</span></span><br><span class="line">    ]                     <span class="comment">// [중요] final이 아닌 변수는 변경의 여지가 있기 때문에</span></span><br><span class="line">    LDC <span class="string">"assert_string"</span>   <span class="comment">// 동적으로 실행되는 메소드의 결과값을 사용한다.</span></span><br><span class="line">    IF_ACMPNE L12         <span class="comment">// 레퍼런스가 같다면 L12로 보낸다.</span></span><br><span class="line">    ICONST_1              <span class="comment">// JVM 스택에서 1번 값을 가져온다. =&gt; ture 값</span></span><br><span class="line">    GOTO L13</span><br><span class="line">   L12</span><br><span class="line">   FRAME SAME1 java/io/PrintStream</span><br><span class="line">    ICONST_0              <span class="comment">// JVM 스택에서 0번 값을 가져온다. =&gt; false 값 </span></span><br><span class="line">   L13</span><br><span class="line">   FRAME FULL [[Ljava/lang/String; java/lang/String java/lang/String] [java/io/PrintStream I]</span><br><span class="line">    INVOKEVIRTUAL java/io/PrintStream.println (Z)V</span><br><span class="line">   L14</span><br><span class="line">    LINENUMBER <span class="number">34</span> L14</span><br><span class="line">    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;</span><br><span class="line">    LDC <span class="string">"assert_"</span></span><br><span class="line">    LDC <span class="string">"string"</span></span><br><span class="line">   L15</span><br><span class="line">    LINENUMBER <span class="number">35</span> L15</span><br><span class="line">    INVOKEVIRTUAL java/lang/String.concat (Ljava/lang/String;)Ljava/lang/String;</span><br><span class="line">    LDC <span class="string">"assert_string"</span></span><br><span class="line">    IF_ACMPNE L16</span><br><span class="line">    ICONST_1</span><br><span class="line">    GOTO L17</span><br><span class="line">   L16</span><br><span class="line">   FRAME SAME1 java/io/PrintStream</span><br><span class="line">    ICONST_0</span><br><span class="line">   L17</span><br><span class="line">    LINENUMBER <span class="number">34</span> L17</span><br><span class="line">   FRAME FULL [[Ljava/lang/String; java/lang/String java/lang/String] [java/io/PrintStream I]</span><br><span class="line">    INVOKEVIRTUAL java/io/PrintStream.println (Z)V</span><br><span class="line">   L18</span><br><span class="line">    LINENUMBER <span class="number">39</span> L18</span><br><span class="line">    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;</span><br><span class="line">    NEW java/lang/String</span><br><span class="line">    DUP</span><br><span class="line">    LDC <span class="string">"assert_string"</span></span><br><span class="line">    INVOKESPECIAL java/lang/String.&lt;init&gt; (Ljava/lang/String;)V</span><br><span class="line">    LDC <span class="string">"assert_string"</span></span><br><span class="line">   L19</span><br><span class="line">    LINENUMBER <span class="number">40</span> L19</span><br><span class="line">    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z</span><br><span class="line">   L20</span><br><span class="line">    LINENUMBER <span class="number">39</span> L20</span><br><span class="line">    INVOKEVIRTUAL java/io/PrintStream.println (Z)V</span><br><span class="line">   L21</span><br><span class="line">    LINENUMBER <span class="number">42</span> L21</span><br><span class="line">    RETURN</span><br><span class="line">   L22</span><br><span class="line">    LOCALVARIABLE args [Ljava/lang/String; L0 L22 <span class="number">0</span></span><br><span class="line">    LOCALVARIABLE fString Ljava/lang/String; L1 L22 <span class="number">1</span></span><br><span class="line">    LOCALVARIABLE vString Ljava/lang/String; L2 L22 <span class="number">2</span></span><br><span class="line">    MAXSTACK = <span class="number">4</span></span><br><span class="line">    MAXLOCALS = <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>자바 9 이하에서는 29번째 라인이 다음과 같이 컴파일 된다.<br><img src="/asset/img/code/java-01/compile-to-string-builder.png" alt="java 8 바이트 코드"></p>
+<p>19라인과 29라인과 같이 변경의 여지가 있는 경우를 제외하면 컴파일러가 모두 합쳐서 String Pool에 집어넣습니다.</p>
+<h3 id="결론"><a href="#결론" class="headerlink" title="결론."></a>결론.</h3><p>String.equals 쓰자<br>“string”.equals(변수)로 써야하는건 기본이라고 생각합니다!</p>
+<h3 id="👍-see-also"><a href="#👍-see-also" class="headerlink" title=" 👍 see also "></a><span id="see-also"> 👍 see also </span></h3><ul>
+<li><a href="https://stackoverflow.com/questions/4918399/where-does-javas-string-constant-pool-live-the-heap-or-the-stack/4918466#4918466" target="_blank" rel="noopener">[Stack Overflow] String Pool은 어디에 위치해 있나요?</a></li>
+<li><a href="https://stackoverflow.com/questions/23252767/string-pool-vs-constant-pool" target="_blank" rel="noopener">[Stack Overflow] String Pool은 Constant Pool에 속하는건가요?</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Flyweight_pattern" target="_blank" rel="noopener">[Wikipedia] 디자인 패턴 - Flyweight 패턴</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings" target="_blank" rel="noopener">[Wikipedia] 자바 바이트 코드 명령어</a></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://sightstudio.github.io/2019/12/29/Java/javaStringPool/" data-id="ck4tko1m70000z4r34cfp8ynw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Sight"
+        },
+        "headline": "Java Byte Code로 본 String",
+        "image": "https://sightstudio.github.io/asset/img/other/java/string-pool-img.png",
+        "keywords": "java String Pool",
+        "genre": "Java",
+        "datePublished": "2019-12-29",
+        "dateCreated": "2019-12-29",
+        "dateModified": "2019-12-31",
+        "url": "https://sightstudio.github.io/2019/12/29/Java/javaStringPool/",
+        "description": "알면 좋고 몰라도 상관없는 글연관된 주제
+
+Object의 Equality와 Identity
+Java String Pool
+Java Byte Code
+
+다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.12345678910111213141516171819202122232425262728293031323334353637383940414243public ",
+        "wordCount": 2299
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rocket" href="https://www.rocketpunch.com/@sdm3285" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rocket"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/seol.d.min" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/SightStudio" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">블로그시작</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/29/Java/javaStringPool/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/asset/img/other/java/string-pool-img.png)" alt="Java Byte Code로 본 String" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2019/12/29/Java/javaStringPool/" class="title">Java Byte Code로 본 String</a></p>
+                            <p class="item-date"><time datetime="2019-12-29T06:14:48.000Z" itemprop="datePublished">2019-12-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/asset/img/life/macbook.jpg)" alt="블로그시작" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a></p>
+                            <p class="item-title"><a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" class="title">블로그시작</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T17:15:28.000Z" itemprop="datePublished">2019-12-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/String-Pool/" rel="tag">String Pool</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/String-Pool/" style="font-size: 10px;">String Pool</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="">Java</a>
+                    </li>
+                
+                    <li>
+                        <a href="">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="">DB</a>
+                    </li>
+                
+                    <li>
+                        <a href="">AWS</a>
+                    </li>
+                
+                    <li>
+                        <a href="">일상</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 Sight</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'https-sightstudio-github-io-2';
+    
+    
+    var disqus_url = 'https://sightstudio.github.io/2019/12/29/Java/javaStringPool/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
