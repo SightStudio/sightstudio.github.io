@@ -6,27 +6,28 @@
     
 
     
-    <title>환경설정 - MySQL 한글 설정 | SightStudio</title>
+    <title>환경설정 - Jenkins 세팅 (도커) | SightStudio</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="MySQL,RDBMS" />
+    <meta name="keywords" content="CI,CD,Jenkins" />
     
-    <meta name="description" content="MySQL 최초 설치시 세팅목차.1. 인코딩2. 서버 시간3. 외부 접속 허용4. 결과    1. 인코딩MySQL을 최초 설치하였을 경우 기본 인코딩은 latin1입니다.적어도 제가 겪은 환경 (Window, Arch, Ubuntu, Centos)에서는 말이죠. 우리는 주로 UTF-8을 사용하기 때문에 최초 설치시에 수정을 해줘야만합니다. 일단 MySQL">
+    <meta name="description" content="1. 젠킨스 설치 [도커]시연 환경 : 윈도우 (Hyper-V) Docker for windows  1. 도커 허브에서 이미지 검색  상단에 jenkins OFFICIAL IMAGE는 Deprecated되었으니 사용하지 말자. 혼동 주의)  jenkins&#x2F;jenkins   --- available jenkins           --- deprecated">
 <meta property="og:type" content="article">
-<meta property="og:title" content="환경설정 - MySQL 한글 설정">
-<meta property="og:url" content="https://sightstudio.github.io/2020/01/01/DB/mysql-config/index.html">
+<meta property="og:title" content="환경설정 - Jenkins 세팅 (도커)">
+<meta property="og:url" content="https://sightstudio.github.io/2020/01/01/CI&CD/config-jenkins/index.html">
 <meta property="og:site_name" content="SightStudio">
-<meta property="og:description" content="MySQL 최초 설치시 세팅목차.1. 인코딩2. 서버 시간3. 외부 접속 허용4. 결과    1. 인코딩MySQL을 최초 설치하였을 경우 기본 인코딩은 latin1입니다.적어도 제가 겪은 환경 (Window, Arch, Ubuntu, Centos)에서는 말이죠. 우리는 주로 UTF-8을 사용하기 때문에 최초 설치시에 수정을 해줘야만합니다. 일단 MySQL">
+<meta property="og:description" content="1. 젠킨스 설치 [도커]시연 환경 : 윈도우 (Hyper-V) Docker for windows  1. 도커 허브에서 이미지 검색  상단에 jenkins OFFICIAL IMAGE는 Deprecated되었으니 사용하지 말자. 혼동 주의)  jenkins&#x2F;jenkins   --- available jenkins           --- deprecated">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://sightstudio.github.io/asset/img/other/rdb/mysql/1/1.png">
+<meta property="og:image" content="https://sightstudio.github.io/asset/img/other/ci&cd/jenkins/01/1.png">
 <meta property="article:published_time" content="2020-01-01T02:20:21.000Z">
-<meta property="article:modified_time" content="2020-01-01T02:40:42.288Z">
+<meta property="article:modified_time" content="2020-01-01T04:36:06.567Z">
 <meta property="article:author" content="Sight">
-<meta property="article:tag" content="MySQL">
-<meta property="article:tag" content="RDBMS">
+<meta property="article:tag" content="CI">
+<meta property="article:tag" content="CD">
+<meta property="article:tag" content="Jenkins">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sightstudio.github.io/asset/img/other/rdb/mysql/1/1.png">
+<meta name="twitter:image" content="https://sightstudio.github.io/asset/img/other/ci&cd/jenkins/01/1.png">
     
 
     
@@ -149,19 +150,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/DB/">DB</a>
+    <a class="page-title-link" href="/categories/CI-CD/">CI&CD</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-DB/mysql-config" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-CI&amp;CD/config-jenkins" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        환경설정 - MySQL 한글 설정
+        환경설정 - Jenkins 세팅 (도커)
         </h1>
     
 
@@ -172,7 +173,7 @@
                 
     <div class="article-date">
       <i class="fa fa-calendar"></i>
-      <a href="/2020/01/01/DB/mysql-config/" class="article-date">
+      <a href="/2020/01/01/CI&CD/config-jenkins/" class="article-date">
          <time datetime="2020-01-01T02:20:21.000Z" itemprop="datePublished">2020-01-01</time>
       </a>
     </div>
@@ -183,7 +184,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/MySQL/" rel="tag">MySQL</a>, <a class="tag-link" href="/tags/RDBMS/" rel="tag">RDBMS</a>
+        <a class="tag-link" href="/tags/CD/" rel="tag">CD</a>, <a class="tag-link" href="/tags/CI/" rel="tag">CI</a>, <a class="tag-link" href="/tags/Jenkins/" rel="tag">Jenkins</a>
     </div>
 
                 
@@ -194,38 +195,34 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="MySQL-최초-설치시-세팅"><a href="#MySQL-최초-설치시-세팅" class="headerlink" title="MySQL 최초 설치시 세팅"></a>MySQL 최초 설치시 세팅</h1><p>목차.<br><a href="#item1">1. 인코딩</a><br><a href="#item2">2. 서버 시간</a><br><a href="#item3">3. 외부 접속 허용</a><br><a href="#item4">4. 결과</a>  </p>
+            <h1 id="1-젠킨스-설치-도커"><a href="#1-젠킨스-설치-도커" class="headerlink" title="1. 젠킨스 설치 [도커]"></a>1. 젠킨스 설치 [도커]</h1><p>시연 환경 : <strong>윈도우 (Hyper-V) Docker for windows</strong></p>
 <hr>
-<h2 id="1-인코딩"><a href="#1-인코딩" class="headerlink" title="1. 인코딩"></a><span id="item1">1. 인코딩</span></h2><p><strong>MySQL</strong>을 최초 설치하였을 경우 기본 인코딩은 latin1입니다.<br>적어도 제가 겪은 환경 (Window, Arch, Ubuntu, Centos)에서는 말이죠.</p>
-<p>우리는 주로 UTF-8을 사용하기 때문에 최초 설치시에 수정을 해줘야만합니다.</p>
-<p>일단 MySQL 부터 설치해봅시다.<br>환경 : (만만한) <strong>AWS EC2 Ubuntu Linux</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server   # MySQL 설치</span><br><span class="line">sudo mysql                          # MySQL 실행</span><br><span class="line"></span><br><span class="line"># MySQL 진입 후</span><br><span class="line">SHOW VARIABLES LIKE &#39;C%&#39;;           # 인코딩 설정 확인</span><br></pre></td></tr></table></figure>
-<p><img src="/asset/img/other/rdb/mysql/1/1.png" alt="↗️️ latin1 으로 설정이 되어있는 상태">  </p>
+<p><strong>1. 도커 허브에서 이미지 검색</strong></p>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/1.png" alt="위 빨간색 레포를 검색한다."></p>
+<p>상단에 jenkins OFFICIAL IMAGE는 <span style="color:red; font-weight:bold;">Deprecated</span>되었으니 사용하지 말자.</p>
+<p><span style="color:red; font-weight:bold;">혼동 주의)</span></p>
+<pre>
+jenkins/jenkins   --- available
+jenkins           --- deprecated
+jenkinsci/jenkins --- deprecated
+</pre>
+
+
+<p><strong>2. docker image 설치</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull jenkins&#x2F;jenkins     # 이미지 다운로드</span><br><span class="line">docker images                   # 이미지 목록 확인</span><br></pre></td></tr></table></figure>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/2.png" alt="2"></p>
+<p><strong>3. jenkins 컨테이너 생성 및 실행</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">* 윈도우 </span><br><span class="line">docker run -it -d      ^</span><br><span class="line">        -p 8090:8080   ^</span><br><span class="line">        -p 50000:50000 ^</span><br><span class="line">        --name jenkins ^</span><br><span class="line">        -v D:\dev_repository\Jenkins\volume ^</span><br><span class="line">        jenkins&#x2F;jenkins</span><br><span class="line"></span><br><span class="line">* 리눅스</span><br><span class="line">docker run -it -d      \</span><br><span class="line">        -p 8090:8080   \</span><br><span class="line">        -p 50000:50000 \</span><br><span class="line">        --name jenkins \</span><br><span class="line">        -v D:\dev_repository\Jenkins\volume \ </span><br><span class="line">        jenkins&#x2F;jenkins</span><br><span class="line"></span><br><span class="line">** 실행 이후</span><br><span class="line">docker log jenkins</span><br></pre></td></tr></table></figure>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/4.png" alt="위의 로그까지 출력했다면 로그에서 나온 비밀번호를 저장해두자"></p>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/3.jpg" alt="위의 -v 옵션은 jenkins 컨테이너와 host와 공유하는 물리 영역이다. &lt;br&gt; -v에 jenkins_home 환경변수를 지정하지 않았다면 다음과 같은 에러를 보게 될 것이다. &lt;br&gt; ( 따로 환경 변수명을 지정하지 않으면 jenkins_home으로 적용된다. )"></p>
+<p><strong>4. 브라우저에서 jenkins 접속</strong><br>브라우저에서 <a href="localhost:8090">localhost:8090</a> 접속</p>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/5.png" alt="비밀 번호를 입력하는 란에 아까 log에서 찾은 비밀번호를 입력한다."></p>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/6.png" alt="왼쪽을 눌러 추천하는 플러그인들을 설치한다."></p>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/7.png" alt="7"><br><img src="/asset/img/other/ci&cd/jenkins/01/8.png" alt="계정을 생성한다."></p>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/9.png" alt="환경설정 끝"></p>
+<p><img src="/asset/img/other/ci&cd/jenkins/01/10.png" alt="젠킨스 시작화면"></p>
 <hr>
-<h4 id="해결-방법"><a href="#해결-방법" class="headerlink" title="해결 방법"></a>해결 방법</h4><ul>
-<li><p><strong>1. URL 파라미터 사용</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;dbName?useUnicode&#x3D;true&amp;characterEncoding&#x3D;utf8</span><br></pre></td></tr></table></figure>
-<p>물론 이렇게 이런식으로 접속 URL에 파라미터를 붙여도 작동은 합니다.<br>하지만 이럴 경우, 다른 프로그램, 사용자가 접속했을 경우 문제가 발생 할 수 있고, 문제를 찾기도 힘듭니다.<br><strong>즉, 지양해햐하는 방법입니다.</strong></p>
-</li>
-<li><p><strong>2. MySQL 설정파일 수정</strong></p>
-</li>
-</ul>
-<p>MySQL설정파일을 직접 수정하는 방법입니다.<br>살짝 까다롭지만, <strong>가장 안전한 방법입니다.</strong><br>설정 파일의 위치는 다음과 같이 환경마다 다릅니다. (MySQL 5.7 기준)</p>
-<p>☑️Ubuntu Linux<br><strong>[mysql]</strong> <code>/etc/mysql/mysql.conf.d/mysql.cnf</code><br><strong>[client]</strong> <code>/etc/mysql/debian.cnf</code><br><strong>[mysqldump]</strong> <code>/etc/mysql/mysql.conf.d/mysqldump.cnf</code><br><strong>[mysqld]</strong> <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>  </p>
-<p>☑️Windows  </p>
-<figure class="highlight plain"><figcaption><span>Server 5.7/my.ini```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**파일을 열고 다음 값들을 추가하거나, 수정해줍니다.**</span><br></pre></td></tr></table></figure>
-<p>[client]<br>default-character-set = utf8</p>
-<p>[mysql]<br>default-character-set=utf8</p>
-<p>[mysqldump]<br>default-character-set=utf8</p>
-<p>[mysqld]<br>character-set-server=utf8<br>collation-server=utf8_general_ci</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line"></span><br><span class="line">## &lt;span id&#x3D;&quot;item2&quot;&gt;2. 서버 시간&lt;&#x2F;span&gt;</span><br><span class="line">서버 시간 또한 설정을 해주어야 합니다.  </span><br><span class="line">특히 운영서버일 경우 기본 시간이 UTC일 가능성이 있기 때문에 설정을 해주어야합니다.</span><br><span class="line"></span><br><span class="line">![2](&#x2F;asset&#x2F;img&#x2F;other&#x2F;rdb&#x2F;mysql&#x2F;1&#x2F;2.png)</span><br><span class="line"></span><br><span class="line">**위의 편집파일을 열어 해당 부분에 추가해줍니다.**</span><br></pre></td></tr></table></figure>
-<p>[mysqld]<br>default-time-zone=’+9:00’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## &lt;span id&#x3D;&quot;item3&quot;&gt;3. 외부 접속 허용&lt;&#x2F;span&gt;</span><br><span class="line"></span><br><span class="line">이 부분은 선택사항입니다. 외부에서 운영서버로 바로 들어가야 할 경우가 존재합니다.  </span><br><span class="line">[mysqld] 항목의 **bind-address**값을 변경합니다. 디폴트 값은 루프백 아이피입니다. (127.0.0.1)  </span><br><span class="line"></span><br><span class="line">모든 IP(0.0.0.0)에 대해 개방하거나, 허용할 IPv4 주소를 입력합니다.</span><br></pre></td></tr></table></figure>
-<p>[mysqld]<br>bind-address=0.0.0.0</p>
-<p>```</p>
-<h2 id="4-결과"><a href="#4-결과" class="headerlink" title="4. 결과"></a><span id="item3">4. 결과</span></h2><h4 id="1-인코딩-설정-결과"><a href="#1-인코딩-설정-결과" class="headerlink" title="1. 인코딩 설정 결과"></a>1. 인코딩 설정 결과</h4><p><img src="/asset/img/other/rdb/mysql/1/3.png" alt="3"></p>
-<h4 id="2-서버-시간-설정-후"><a href="#2-서버-시간-설정-후" class="headerlink" title="2. 서버 시간 설정 후"></a>2. 서버 시간 설정 후</h4><p><img src="/asset/img/other/rdb/mysql/1/4.png" alt="4"></p>
-<h4 id="3-DB-외부-접속"><a href="#3-DB-외부-접속" class="headerlink" title="3. DB 외부 접속"></a>3. DB 외부 접속</h4><p><img src="/asset/img/other/rdb/mysql/1/5.png" alt="5"></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h2><p>기존에는 그냥 exe 파일을 받아서 설치를 하였지만 도커로 설치할 경우 훨씬 편리하게 할수 있다.<br>다음에는 docker-conpose를 통해 더 쉽게 설치하는법을 배워야 겠다.</p>
 
         </div>
         <footer class="article-footer">
@@ -233,7 +230,7 @@
 
 
 
-    <a data-url="https://sightstudio.github.io/2020/01/01/DB/mysql-config/" data-id="ck4uobos70000z4r38vdt6u6b" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://sightstudio.github.io/2020/01/01/CI&CD/config-jenkins/" data-id="ck4us2oac0000khr3hie62ij0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -303,20 +300,25 @@
             "@type": "Person",
             "name": "Sight"
         },
-        "headline": "환경설정 - MySQL 한글 설정",
-        "image": "https://sightstudio.github.io/asset/img/other/rdb/mysql/1/1.png",
-        "keywords": "MySQL RDBMS",
-        "genre": "DB",
+        "headline": "환경설정 - Jenkins 세팅 (도커)",
+        "image": "https://sightstudio.github.io/asset/img/other/ci&cd/jenkins/01/1.png",
+        "keywords": "CI CD Jenkins",
+        "genre": "CI&CD",
         "datePublished": "2020-01-01",
         "dateCreated": "2020-01-01",
         "dateModified": "2020-01-01",
-        "url": "https://sightstudio.github.io/2020/01/01/DB/mysql-config/",
-        "description": "MySQL 최초 설치시 세팅목차.1. 인코딩2. 서버 시간3. 외부 접속 허용4. 결과  
+        "url": "https://sightstudio.github.io/2020/01/01/CI&CD/config-jenkins/",
+        "description": "1. 젠킨스 설치 [도커]시연 환경 : 윈도우 (Hyper-V) Docker for windows
 
-1. 인코딩MySQL을 최초 설치하였을 경우 기본 인코딩은 latin1입니다.적어도 제가 겪은 환경 (Window, Arch, Ubuntu, Centos)에서는 말이죠.
-우리는 주로 UTF-8을 사용하기 때문에 최초 설치시에 수정을 해줘야만합니다.
-일단 MySQL ",
-        "wordCount": 370
+1. 도커 허브에서 이미지 검색
+
+상단에 jenkins OFFICIAL IMAGE는 Deprecated되었으니 사용하지 말자.
+혼동 주의)
+
+jenkins/jenkins   --- available
+jenkins           --- deprecated
+",
+        "wordCount": 369
     }
 </script>
 
@@ -373,10 +375,20 @@
         
 <nav id="article-nav">
     
+        <a href="/2020/01/01/DB/mysql-config/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            환경설정 - MySQL 한글 설정
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
     
-        <a href="/2020/01/01/CI&CD/config-jenkins/" id="article-nav-older" class="article-nav-link-wrap">
+    
+        <a href="/2019/12/29/Java/javaStringPool/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">환경설정 - Jenkins 세팅 (도커)</p>
+        <p class="article-nav-title">Java Byte Code로 본 String</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -592,7 +604,7 @@
     var disqus_shortname = 'https-sightstudio-github-io-2';
     
     
-    var disqus_url = 'https://sightstudio.github.io/2020/01/01/DB/mysql-config/';
+    var disqus_url = 'https://sightstudio.github.io/2020/01/01/CI&amp;CD/config-jenkins/';
     
     (function() {
     var dsq = document.createElement('script');
