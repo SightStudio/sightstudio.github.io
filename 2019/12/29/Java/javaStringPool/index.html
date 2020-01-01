@@ -12,16 +12,16 @@
     
     <meta name="keywords" content="java,String Pool" />
     
-    <meta name="description" content="알면 좋고 몰라도 상관없는 글연관된 주제  Object의 Equality와 Identity Java String Pool Java Byte Code  다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.12345678910111213141516171819202122232425262728293031323334353637383940414243public">
+    <meta name="description" content="알면 좋고 몰라도 상관없는 글연관된 주제  Object의 Equality와 Identity Java String Pool Java Byte Code  다음 코드의 정답을 아신다면 이글은 넘어가도 될 듯 합니다.12345678910111213141516171819202122232425262728293031323334353637383940414243public">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Byte Code로 본 String">
 <meta property="og:url" content="https://sightstudio.github.io/2019/12/29/Java/javaStringPool/index.html">
 <meta property="og:site_name" content="SightStudio">
-<meta property="og:description" content="알면 좋고 몰라도 상관없는 글연관된 주제  Object의 Equality와 Identity Java String Pool Java Byte Code  다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.12345678910111213141516171819202122232425262728293031323334353637383940414243public">
+<meta property="og:description" content="알면 좋고 몰라도 상관없는 글연관된 주제  Object의 Equality와 Identity Java String Pool Java Byte Code  다음 코드의 정답을 아신다면 이글은 넘어가도 될 듯 합니다.12345678910111213141516171819202122232425262728293031323334353637383940414243public">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://sightstudio.github.io/asset/img/other/java/string-pool-img.png">
 <meta property="article:published_time" content="2019-12-29T06:14:48.000Z">
-<meta property="article:modified_time" content="2019-12-31T07:50:16.023Z">
+<meta property="article:modified_time" content="2019-12-31T07:52:45.297Z">
 <meta property="article:author" content="Sight">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="String Pool">
@@ -92,7 +92,7 @@
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/DB/">DB</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a></li></ul>
                                     
                         </ul>
                         <nav id="sub-nav">
@@ -200,7 +200,7 @@
 <li><strong>Java String Pool</strong></li>
 <li><strong>Java Byte Code</strong></li>
 </ul>
-<h5 id="다음-사진의-정답을-아신다면-이글은-넘어가도-될-듯-하다"><a href="#다음-사진의-정답을-아신다면-이글은-넘어가도-될-듯-하다" class="headerlink" title="다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다."></a>다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> String fString = <span class="string">"string"</span>;</span><br><span class="line">        String       vString = <span class="string">"string"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + <span class="string">"string"</span> == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="keyword">new</span> String(<span class="string">"assert_string"</span>).intern() == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + <span class="keyword">new</span> String(<span class="string">"string"</span>) == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + fString == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + vString == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">               <span class="string">"assert_"</span>.concat(<span class="string">"string"</span>) == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">               <span class="keyword">new</span> String(<span class="string">"assert_string"</span>).equals(<span class="string">"assert_string"</span>)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="다음-코드의-정답을-아신다면-이글은-넘어가도-될-듯-합니다"><a href="#다음-코드의-정답을-아신다면-이글은-넘어가도-될-듯-합니다" class="headerlink" title="다음 코드의 정답을 아신다면 이글은 넘어가도 될 듯 합니다."></a>다음 코드의 정답을 아신다면 이글은 넘어가도 될 듯 합니다.</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> String fString = <span class="string">"string"</span>;</span><br><span class="line">        String       vString = <span class="string">"string"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + <span class="string">"string"</span> == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="keyword">new</span> String(<span class="string">"assert_string"</span>).intern() == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + <span class="keyword">new</span> String(<span class="string">"string"</span>) == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + fString == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"assert_"</span> + vString == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">               <span class="string">"assert_"</span>.concat(<span class="string">"string"</span>) == <span class="string">"assert_string"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7번</span></span><br><span class="line">        System.out.println(</span><br><span class="line">               <span class="keyword">new</span> String(<span class="string">"assert_string"</span>).equals(<span class="string">"assert_string"</span>)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="정답"><a href="#정답" class="headerlink" title="정답"></a>정답</h5><ol>
 <li>true</li>
@@ -347,7 +347,7 @@ Object의 Equality와 Identity
 Java String Pool
 Java Byte Code
 
-다음 사진의 정답을 아신다면 이글은 넘어가도 될 듯 하다.12345678910111213141516171819202122232425262728293031323334353637383940414243public ",
+다음 코드의 정답을 아신다면 이글은 넘어가도 될 듯 합니다.12345678910111213141516171819202122232425262728293031323334353637383940414243public",
         "wordCount": 2299
     }
 </script>
@@ -405,6 +405,16 @@ Java Byte Code
         
 <nav id="article-nav">
     
+        <a href="/2020/01/01/DB/mysql-config/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            환경설정 - MySQL 한글 설정
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
     
         <a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
@@ -426,6 +436,26 @@ Java Byte Code
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/01/01/DB/mysql-config/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/asset/img/other/rdb/mysql/1/1.png)" alt="환경설정 - MySQL 한글 설정" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DB/">DB</a></p>
+                            <p class="item-title"><a href="/2020/01/01/DB/mysql-config/" class="title">환경설정 - MySQL 한글 설정</a></p>
+                            <p class="item-date"><time datetime="2020-01-01T02:20:21.000Z" itemprop="datePublished">2020-01-01</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -476,7 +506,7 @@ Java Byte Code
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DB/">DB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -486,7 +516,7 @@ Java Byte Code
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -496,7 +526,7 @@ Java Byte Code
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/String-Pool/" rel="tag">String Pool</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDBMS/" rel="tag">RDBMS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String-Pool/" rel="tag">String Pool</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -506,7 +536,7 @@ Java Byte Code
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/String-Pool/" style="font-size: 10px;">String Pool</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
+            <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/RDBMS/" style="font-size: 10px;">RDBMS</a> <a href="/tags/String-Pool/" style="font-size: 10px;">String Pool</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
         </div>
     </div>
 
@@ -563,7 +593,7 @@ Java Byte Code
                 <h1 class="logo-wrap">
                     <a href="/" class="logo"></a>
                 </h1>
-                <p>&copy; 2019 Sight</p>
+                <p>&copy; 2020 Sight</p>
                 
                 <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
                 
