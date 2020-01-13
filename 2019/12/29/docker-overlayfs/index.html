@@ -6,19 +6,24 @@
     
 
     
-    <title>Tag: CI | SightStudio</title>
+    <title>도커 - 도커가 light-weight한 이유, OverlayFS | SightStudio</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="keywords" content="CI&amp;CD,Docker" />
+    
     <meta name="description" content="취준생 서버 개발자의 블로그입니다.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SightStudio">
-<meta property="og:url" content="https://sightstudio.github.io/tags/CI/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="도커 - 도커가 light-weight한 이유, OverlayFS">
+<meta property="og:url" content="https://sightstudio.github.io/2019/12/29/docker-overlayfs/index.html">
 <meta property="og:site_name" content="SightStudio">
 <meta property="og:description" content="취준생 서버 개발자의 블로그입니다.">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-29T06:14:48.000Z">
+<meta property="article:modified_time" content="2020-01-07T10:56:58.926Z">
 <meta property="article:author" content="Sight">
-<meta property="article:tag" content="SightStudio">
+<meta property="article:tag" content="CI&amp;CD">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
     
 
@@ -154,82 +159,153 @@ ga('send', 'pageview');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>Tag: <em>CI</em>
+    <a class="page-title-link" href="/categories/language/">language</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/language/Java/">Java</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-docker-overlayfs" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2020" class="archive-year"><i class="icon fa fa-calendar-o"></i>2020</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2020/01/01/CI&CD/config-jenkins/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/asset/img/other/ci&cd/jenkins/01/1.png)" alt="환경설정 - Jenkins 세팅 (도커)" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://sightstudio.github.io/2020/01/01/CI&amp;CD/config-jenkins/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CI-CD/">CI&CD</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CI-CD/Jenkins/">Jenkins</a>
-            </div>
-            <div class="date"><time datetime="2020-01-01T02:20:21.000Z" itemprop="datePublished">2020-01-01</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2020/01/01/CI&CD/config-jenkins/">환경설정 - Jenkins 세팅 (도커)</a>
+        도커 - 도커가 light-weight한 이유, OverlayFS
         </h1>
     
 
-        <p class="article-excerpt">
-            1. 젠킨스 설치 [도커]시연 환경 : 윈도우 (Hyper-V) Docker for windows
-
-1. 도커 허브에서 이미지 검색
-
-상단에 jenkins OFFICIAL IMAGE는 Deprecated되었으니 사용하지 말자.
-혼동 주의)
-
-jenkins/jenkins   --- available
-jenkins           --- deprecated
-
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/2019/12/29/docker-overlayfs/" class="article-date">
+         <time datetime="2019-12-29T06:14:48.000Z" itemprop="datePublished">2019-12-29</time>
+      </a>
     </div>
-</article>
-    
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CI-CD/" rel="tag">CI&CD</a>, <a class="tag-link" href="/tags/Docker/" rel="tag">Docker</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
         </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://sightstudio.github.io/2019/12/29/docker-overlayfs/" data-id="ck5c0f3ye0000xbr308i8biy5" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Sight"
+        },
+        "headline": "도커 - 도커가 light-weight한 이유, OverlayFS",
+        "image": "https://sightstudio.github.io",
+        "keywords": "CI&CD Docker",
+        "genre": "language Java",
+        "datePublished": "2019-12-29",
+        "dateCreated": "2019-12-29",
+        "dateModified": "2020-01-07",
+        "url": "https://sightstudio.github.io/2019/12/29/docker-overlayfs/",
+        "description": "",
+        "wordCount": 1
+    }
+</script>
+
+</article>
+
+    <section id="comments">
     
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
 
 
-    </div></section>
+    
+    </section>
 
 
 
@@ -267,6 +343,29 @@ jenkins           --- deprecated
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/12/29/Java/javaStringPool/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Java Byte Code로 본 String
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">블로그시작</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -514,11 +613,13 @@ jenkins           --- deprecated
     var disqus_shortname = 'https-sightstudio-github-io-2';
     
     
+    var disqus_url = 'https://sightstudio.github.io/2019/12/29/docker-overlayfs/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
