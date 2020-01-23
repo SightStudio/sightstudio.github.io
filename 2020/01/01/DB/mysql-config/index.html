@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://sightstudio.github.io/asset/img/other/rdb/mysql/1/1.png">
 <meta property="article:published_time" content="2020-01-01T02:20:21.000Z">
-<meta property="article:modified_time" content="2020-01-19T04:13:53.945Z">
+<meta property="article:modified_time" content="2020-01-23T12:15:43.483Z">
 <meta property="article:author" content="Sight">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="RDBMS">
@@ -104,7 +104,7 @@ ga('send', 'pageview');
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CI-CD/">CI&CD</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CI-CD/Jenkins/">Jenkins</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Framework/">Framework</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Framework/Spring/">Spring</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/RDBMS/">RDBMS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/RDBMS/MySQL/">MySQL</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/language/">language</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/language/Java/">Java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9D%BC%EC%83%81/%EC%9D%BC%EC%83%81/">일상</a></li></ul></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CI-CD/">CI&CD</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CI-CD/Jenkins/">Jenkins</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Framework/">Framework</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Framework/Spring/">Spring</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Infra/">Infra</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Infra/AWS/">AWS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/RDBMS/">RDBMS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/RDBMS/MySQL/">MySQL</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/language/">language</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/language/Java/">Java</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9D%BC%EC%83%81/%EC%9D%BC%EC%83%81/">일상</a></li></ul></li></ul>
                                     
                         </ul>
                         <nav id="sub-nav">
@@ -225,12 +225,12 @@ ga('send', 'pageview');
 <p>MySQL설정파일을 직접 수정하는 방법입니다.<br>살짝 까다롭지만, <strong>가장 안전한 방법입니다.</strong><br>설정 파일의 위치는 다음과 같이 환경마다 다릅니다. (MySQL 5.7 기준)</p>
 <p>☑️Ubuntu Linux<br><strong>[mysql]</strong> <code>/etc/mysql/mysql.conf.d/mysql.cnf</code><br><strong>[client]</strong> <code>/etc/mysql/debian.cnf</code><br><strong>[mysqldump]</strong> <code>/etc/mysql/mysql.conf.d/mysqldump.cnf</code><br><strong>[mysqld]</strong> <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>  </p>
 <p>☑️Windows  </p>
-<figure class="highlight plain"><figcaption><span>Server 5.7/my.ini</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**파일을 열고 다음 값들을 추가하거나, 수정해줍니다.**</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>Server 5.7/my.ini```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**파일을 열고 다음 값들을 추가하거나, 수정해줍니다.**</span><br></pre></td></tr></table></figure>
 <p>[client]<br>default-character-set = utf8</p>
 <p>[mysql]<br>default-character-set=utf8</p>
 <p>[mysqldump]<br>default-character-set=utf8</p>
 <p>[mysqld]<br>character-set-server=utf8<br>collation-server=utf8_general_ci</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line"></span><br><span class="line">## &lt;span id&#x3D;&quot;item2&quot;&gt;2. 서버 시간&lt;&#x2F;span&gt;</span><br><span class="line">서버 시간 또한 설정을 해주어야 합니다.  </span><br><span class="line">특히 운영서버일 경우 기본 시간이 UTC일 가능성이 있기 때문에 설정을 해주어야합니다.</span><br><span class="line"></span><br><span class="line">![2](&#x2F;asset&#x2F;img&#x2F;other&#x2F;rdb&#x2F;mysql&#x2F;1&#x2F;2.png)</span><br><span class="line"></span><br><span class="line">**위의 편집파일을 열어 해당 부분에 추가해줍니다.**</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## &lt;span id&#x3D;&quot;item2&quot;&gt;2. 서버 시간&lt;&#x2F;span&gt;</span><br><span class="line">서버 시간 또한 설정을 해주어야 합니다.  </span><br><span class="line">특히 운영서버일 경우 기본 시간이 UTC일 가능성이 있기 때문에 설정을 해주어야합니다.</span><br><span class="line"></span><br><span class="line">![2](&#x2F;asset&#x2F;img&#x2F;other&#x2F;rdb&#x2F;mysql&#x2F;1&#x2F;2.png)</span><br><span class="line"></span><br><span class="line">**위의 편집파일을 열어 해당 부분에 추가해줍니다.**</span><br></pre></td></tr></table></figure>
 <p>[mysqld]<br>default-time-zone=’+9:00’</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## &lt;span id&#x3D;&quot;item3&quot;&gt;3. 외부 접속 허용&lt;&#x2F;span&gt;</span><br><span class="line"></span><br><span class="line">이 부분은 선택사항입니다. 외부에서 운영서버로 바로 들어가야 할 경우가 존재합니다.  </span><br><span class="line">[mysqld] 항목의 **bind-address**값을 변경합니다. 디폴트 값은 루프백 아이피입니다. (127.0.0.1)  </span><br><span class="line"></span><br><span class="line">모든 IP(0.0.0.0)에 대해 개방하거나, 허용할 IPv4 주소를 입력합니다.</span><br></pre></td></tr></table></figure>
 <p>[mysqld]<br>bind-address=0.0.0.0</p>
@@ -321,14 +321,14 @@ ga('send', 'pageview');
         "genre": "RDBMS MySQL",
         "datePublished": "2020-01-01",
         "dateCreated": "2020-01-01",
-        "dateModified": "2020-01-19",
+        "dateModified": "2020-01-23",
         "url": "https://sightstudio.github.io/2020/01/01/DB/mysql-config/",
         "description": "MySQL 최초 설치시 세팅목차.1. 인코딩2. 서버 시간3. 외부 접속 허용4. 결과  
 
 1. 인코딩MySQL을 최초 설치하였을 경우 기본 인코딩은 latin1입니다.적어도 제가 겪은 환경 (Window, Arch, Ubuntu, Centos)에서는 말이죠.
 우리는 주로 UTF-8을 사용하기 때문에 최초 설치시에 수정을 해줘야만합니다.
 일단 MySQL ",
-        "wordCount": 370
+        "wordCount": 368
     }
 </script>
 
@@ -420,6 +420,26 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2020/01/23/aws-ec2-swap/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Infra/">Infra</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Infra/AWS/">AWS</a></p>
+                            <p class="item-title"><a href="/2020/01/23/aws-ec2-swap/" class="title">[AWS] 가상메모리 추가하기</a></p>
+                            <p class="item-date"><time datetime="2020-01-23T03:31:15.000Z" itemprop="datePublished">2020-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2020/01/19/spring/why-field-injection-is-evil/" class="thumbnail">
     
     
@@ -497,26 +517,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/asset/img/life/macbook.jpg)" alt="블로그시작" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/%EC%9D%BC%EC%83%81/%EC%9D%BC%EC%83%81/">일상</a></p>
-                            <p class="item-title"><a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" class="title">블로그시작</a></p>
-                            <p class="item-date"><time datetime="2019-12-28T17:15:28.000Z" itemprop="datePublished">2019-12-29</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -526,7 +526,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CI-CD/">CI&CD</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CI-CD/Jenkins/">Jenkins</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Framework/">Framework</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Framework/Spring/">Spring</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/RDBMS/">RDBMS</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RDBMS/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/Java/">Java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9D%BC%EC%83%81/%EC%9D%BC%EC%83%81/">일상</a><span class="category-list-count">1</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CI-CD/">CI&CD</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CI-CD/Jenkins/">Jenkins</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Framework/">Framework</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Framework/Spring/">Spring</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Infra/">Infra</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Infra/AWS/">AWS</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/RDBMS/">RDBMS</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RDBMS/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/Java/">Java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9D%BC%EC%83%81/%EC%9D%BC%EC%83%81/">일상</a><span class="category-list-count">1</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -536,7 +536,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -546,7 +546,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CD/" rel="tag">CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DI/" rel="tag">DI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDBMS/" rel="tag">RDBMS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String-Pool/" rel="tag">String Pool</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CD/" rel="tag">CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DI/" rel="tag">DI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDBMS/" rel="tag">RDBMS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String-Pool/" rel="tag">String Pool</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ec2/" rel="tag">ec2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -556,7 +556,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/DI/" style="font-size: 10px;">DI</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/RDBMS/" style="font-size: 10px;">RDBMS</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String-Pool/" style="font-size: 10px;">String Pool</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
+            <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/DI/" style="font-size: 10px;">DI</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/RDBMS/" style="font-size: 10px;">RDBMS</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String-Pool/" style="font-size: 10px;">String Pool</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/ec2/" style="font-size: 10px;">ec2</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
         </div>
     </div>
 
