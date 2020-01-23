@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://sightstudio.github.io/asset/img/other/rdb/mysql/1/1.png">
 <meta property="article:published_time" content="2020-01-01T02:20:21.000Z">
-<meta property="article:modified_time" content="2020-01-23T12:15:43.483Z">
+<meta property="article:modified_time" content="2020-01-23T12:21:51.648Z">
 <meta property="article:author" content="Sight">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="RDBMS">
@@ -217,24 +217,30 @@ ga('send', 'pageview');
 <h4 id="해결-방법"><a href="#해결-방법" class="headerlink" title="해결 방법"></a>해결 방법</h4><ul>
 <li><p><strong>1. URL 파라미터 사용</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;dbName?useUnicode&#x3D;true&amp;characterEncoding&#x3D;utf8</span><br></pre></td></tr></table></figure>
-<p>물론 이렇게 이런식으로 접속 URL에 파라미터를 붙여도 작동은 합니다.<br>하지만 이럴 경우, 다른 프로그램, 사용자가 접속했을 경우 문제가 발생 할 수 있고, 문제를 찾기도 힘듭니다.<br><strong>즉, 지양해햐하는 방법입니다.</strong></p>
+<p>물론 이렇게 이런식으로 접속 URL에 파라미터를 붙여도 작동은 합니다.<br>하지만 이럴 경우, 다른 프로그램, 사용자가 접속했을 경우 문제가 발생 할 수 있고, 문제를 찾기도 힘듭니다.</p>
+</li>
+<li><p><em>즉, 지양해햐하는 방법입니다.*</em></p>
 </li>
 <li><p><strong>2. MySQL 설정파일 수정</strong></p>
 </li>
 </ul>
 <p>MySQL설정파일을 직접 수정하는 방법입니다.<br>살짝 까다롭지만, <strong>가장 안전한 방법입니다.</strong><br>설정 파일의 위치는 다음과 같이 환경마다 다릅니다. (MySQL 5.7 기준)</p>
 <p>☑️Ubuntu Linux<br><strong>[mysql]</strong> <code>/etc/mysql/mysql.conf.d/mysql.cnf</code><br><strong>[client]</strong> <code>/etc/mysql/debian.cnf</code><br><strong>[mysqldump]</strong> <code>/etc/mysql/mysql.conf.d/mysqldump.cnf</code><br><strong>[mysqld]</strong> <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>  </p>
-<p>☑️Windows  </p>
-<figure class="highlight plain"><figcaption><span>Server 5.7/my.ini```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**파일을 열고 다음 값들을 추가하거나, 수정해줍니다.**</span><br></pre></td></tr></table></figure>
-<p>[client]<br>default-character-set = utf8</p>
-<p>[mysql]<br>default-character-set=utf8</p>
-<p>[mysqldump]<br>default-character-set=utf8</p>
-<p>[mysqld]<br>character-set-server=utf8<br>collation-server=utf8_general_ci</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## &lt;span id&#x3D;&quot;item2&quot;&gt;2. 서버 시간&lt;&#x2F;span&gt;</span><br><span class="line">서버 시간 또한 설정을 해주어야 합니다.  </span><br><span class="line">특히 운영서버일 경우 기본 시간이 UTC일 가능성이 있기 때문에 설정을 해주어야합니다.</span><br><span class="line"></span><br><span class="line">![2](&#x2F;asset&#x2F;img&#x2F;other&#x2F;rdb&#x2F;mysql&#x2F;1&#x2F;2.png)</span><br><span class="line"></span><br><span class="line">**위의 편집파일을 열어 해당 부분에 추가해줍니다.**</span><br></pre></td></tr></table></figure>
-<p>[mysqld]<br>default-time-zone=’+9:00’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## &lt;span id&#x3D;&quot;item3&quot;&gt;3. 외부 접속 허용&lt;&#x2F;span&gt;</span><br><span class="line"></span><br><span class="line">이 부분은 선택사항입니다. 외부에서 운영서버로 바로 들어가야 할 경우가 존재합니다.  </span><br><span class="line">[mysqld] 항목의 **bind-address**값을 변경합니다. 디폴트 값은 루프백 아이피입니다. (127.0.0.1)  </span><br><span class="line"></span><br><span class="line">모든 IP(0.0.0.0)에 대해 개방하거나, 허용할 IPv4 주소를 입력합니다.</span><br></pre></td></tr></table></figure>
-<p>[mysqld]<br>bind-address=0.0.0.0</p>
-<p>```</p>
+<p>☑️Windows</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:&#x2F;ProgramData&#x2F;MySQL&#x2F;MySQL Server 5.7&#x2F;my.ini</span><br></pre></td></tr></table></figure>
+
+<p><strong>파일을 열고 다음 값들을 추가하거나, 수정해줍니다.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set &#x3D; utf8</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set&#x3D;utf8</span><br><span class="line"></span><br><span class="line">[mysqldump]</span><br><span class="line">default-character-set&#x3D;utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">character-set-server&#x3D;utf8</span><br><span class="line">collation-server&#x3D;utf8_general_ci</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-서버-시간"><a href="#2-서버-시간" class="headerlink" title="2. 서버 시간"></a><span id="item2">2. 서버 시간</span></h2><p>서버 시간 또한 설정을 해주어야 합니다.<br>특히 운영서버일 경우 기본 시간이 UTC일 가능성이 있기 때문에 설정을 해주어야합니다.</p>
+<p><img src="/asset/img/other/rdb/mysql/1/2.png" alt="2"></p>
+<p><strong>위의 편집파일을 열어 해당 부분에 추가해줍니다.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">default-time-zone&#x3D;&#39;+9:00&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-외부-접속-허용"><a href="#3-외부-접속-허용" class="headerlink" title="3. 외부 접속 허용"></a><span id="item3">3. 외부 접속 허용</span></h2><p>이 부분은 선택사항입니다. 외부에서 운영서버로 바로 들어가야 할 경우가 존재합니다.<br>[mysqld] 항목의 <strong>bind-address</strong>값을 변경합니다. 디폴트 값은 루프백 아이피입니다. (127.0.0.1)  </p>
+<p>모든 IP(0.0.0.0)에 대해 개방하거나, 허용할 IPv4 주소를 입력합니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">bind-address&#x3D;0.0.0.0</span><br></pre></td></tr></table></figure>
+
 <h2 id="4-결과"><a href="#4-결과" class="headerlink" title="4. 결과"></a><span id="item3">4. 결과</span></h2><h4 id="1-인코딩-설정-결과"><a href="#1-인코딩-설정-결과" class="headerlink" title="1. 인코딩 설정 결과"></a>1. 인코딩 설정 결과</h4><p><img src="/asset/img/other/rdb/mysql/1/3.png" alt="3"></p>
 <h4 id="2-서버-시간-설정-후"><a href="#2-서버-시간-설정-후" class="headerlink" title="2. 서버 시간 설정 후"></a>2. 서버 시간 설정 후</h4><p><img src="/asset/img/other/rdb/mysql/1/4.png" alt="4"></p>
 <h4 id="3-DB-외부-접속"><a href="#3-DB-외부-접속" class="headerlink" title="3. DB 외부 접속"></a>3. DB 외부 접속</h4><p><img src="/asset/img/other/rdb/mysql/1/5.png" alt="5"></p>
@@ -328,7 +334,7 @@ ga('send', 'pageview');
 1. 인코딩MySQL을 최초 설치하였을 경우 기본 인코딩은 latin1입니다.적어도 제가 겪은 환경 (Window, Arch, Ubuntu, Centos)에서는 말이죠.
 우리는 주로 UTF-8을 사용하기 때문에 최초 설치시에 수정을 해줘야만합니다.
 일단 MySQL ",
-        "wordCount": 368
+        "wordCount": 380
     }
 </script>
 
