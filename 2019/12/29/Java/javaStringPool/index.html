@@ -10,7 +10,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="java,String Pool" />
+    <meta name="keywords" content="java" />
     
     <meta name="description" content="알면 좋고 몰라도 상관없는 글연관된 주제  Object의 Equality와 Identity Java String Pool Java Byte Code  다음 코드의 정답을 아신다면 이글은 넘어가도 될 듯 합니다.12345678910111213141516171819202122232425262728293031323334353637383940414243public">
 <meta property="og:type" content="article">
@@ -21,10 +21,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://sightstudio.github.io/asset/img/other/java/string-pool-img.png">
 <meta property="article:published_time" content="2019-12-29T06:14:48.000Z">
-<meta property="article:modified_time" content="2020-01-19T04:14:06.299Z">
+<meta property="article:modified_time" content="2020-02-09T06:54:28.267Z">
 <meta property="article:author" content="Sight">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="String Pool">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sightstudio.github.io/asset/img/other/java/string-pool-img.png">
     
@@ -195,7 +194,7 @@ ga('send', 'pageview');
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/String-Pool/" rel="tag">String Pool</a>, <a class="tag-link" href="/tags/java/" rel="tag">java</a>
+        <a class="tag-link" href="/tags/java/" rel="tag">java</a>
     </div>
 
                 
@@ -226,13 +225,12 @@ ga('send', 'pageview');
 <hr>
 <p>목차.<br><a href="#item1">1. 자바의 String Pool</a><br><a href="#item2">2. 사진 설명</a><br><a href="#item3">3. 바이트코드 - 어떻게 컴파일된거야</a></p>
 <h2 id="1-String-Pool"><a href="#1-String-Pool" class="headerlink" title="1. String Pool"></a><span id="item1">1. String Pool</span></h2><p><img src="/asset/img/other/java/string-pool-img.png" alt="자바의 String Pool"></p>
-<p>잘 알려진 사실이지만 <strong>자바의 String은 Immutable합니다.</strong><br>자바에서 한번 assign된 문자열은 수정될 수 없으며, 문자열을 수정하면</p>
+<p>잘 알려진 사실이지만 <strong>자바의 String은 Immutable하다.</strong><br>자바에서 한번 assign된 문자열은 수정될 수 없으며, 문자열을 수정하면</p>
 <p><strong>기존의 문자열을 수정하는것이 아닌, 새로운 문자열을 만든다.</strong></p>
 <p>그렇기 때문에 자바에서는 동일한 문자열을 생성할때 드는 메모리, 생성 시간을 줄이기 위해<br>생성된 스트링 리터럴을 <strong>String Pool</strong>이라는 곳에 저장한다.<br>즉, String Pool에 있는 문자열이면 재사용하고, 없을 때만 새로운 문자열 객체를 만든다. 캐싱과 같은 개념이다.</p>
 <ul>
-<li>이러한 형태를 디자인 패턴에서는 <a href="#see-also">Flyweight Pattern</a>이라고도 한다. </li>
-<li>String Pool의 위치는 JVM 구현체에 따라 다르다. eg. <strong>Hotspot VM, GrralVM</strong></li>
-<li>String이 아닌 </li>
+<li>이러한 형태를 디자인 패턴에서는 <a href="#see-also">Flyweight Pattern</a>이라고 한다. </li>
+<li>String Pool의 위치는 JVM 구현체에 따라 다르다. eg. <strong>Hotspot VM 등등..</strong></li>
 </ul>
 <p>하지만, 우리가 new 연산자를 사용하여 문자열을 만들 경우에는 String Pool에 저장되지 않는다.<br>반대로 String 클래스의 <strong>intern()</strong> 메소드를 사용하면, String Pool 밖에 있는 문자열 객체를<br>String Pool에 저장 할 수 있다.</p>
 <p>예시)</p>
@@ -347,11 +345,11 @@ ga('send', 'pageview');
         },
         "headline": "[Java] Byte Code로 본 String",
         "image": "https://sightstudio.github.io/asset/img/other/java/string-pool-img.png",
-        "keywords": "java String Pool",
+        "keywords": "java",
         "genre": "language Java",
         "datePublished": "2019-12-29",
         "dateCreated": "2019-12-29",
-        "dateModified": "2020-01-19",
+        "dateModified": "2020-02-09",
         "url": "https://sightstudio.github.io/2019/12/29/Java/javaStringPool/",
         "description": "알면 좋고 몰라도 상관없는 글연관된 주제
 
@@ -360,7 +358,7 @@ Java String Pool
 Java Byte Code
 
 다음 코드의 정답을 아신다면 이글은 넘어가도 될 듯 합니다.12345678910111213141516171819202122232425262728293031323334353637383940414243public",
-        "wordCount": 2299
+        "wordCount": 2297
     }
 </script>
 
@@ -578,7 +576,7 @@ Java Byte Code
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CD/" rel="tag">CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DI/" rel="tag">DI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EC2/" rel="tag">EC2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDBMS/" rel="tag">RDBMS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String-Pool/" rel="tag">String Pool</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CD/" rel="tag">CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DI/" rel="tag">DI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EC2/" rel="tag">EC2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDBMS/" rel="tag">RDBMS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -588,7 +586,7 @@ Java Byte Code
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/DI/" style="font-size: 10px;">DI</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/RDBMS/" style="font-size: 10px;">RDBMS</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String-Pool/" style="font-size: 10px;">String Pool</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
+            <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/DI/" style="font-size: 10px;">DI</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/RDBMS/" style="font-size: 10px;">RDBMS</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
         </div>
     </div>
 
