@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://sightstudio.github.io/asset/img/code/java-01/threadLocal/example-result.png">
 <meta property="article:published_time" content="2020-02-20T08:16:59.000Z">
-<meta property="article:modified_time" content="2020-02-21T19:36:24.331Z">
+<meta property="article:modified_time" content="2020-02-21T19:39:28.600Z">
 <meta property="article:author" content="Sight">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -245,8 +245,8 @@ ga('send', 'pageview');
 <td><strong>since java 8</strong></td>
 </tr>
 </tbody></table>
-<h6 id="set-과-withInitial-혼동-주의"><a href="#set-과-withInitial-혼동-주의" class="headerlink" title="set()과 withInitial() 혼동 주의"></a><strong>set()과 withInitial() 혼동 주의</strong></h6><p>람다식이 도입된 자바 8 전까지는 다음과 같이 기본값을 initialValue()를 오버라이딩하여 구현있어야 했지만.<br>자바 8 이후 부터는 더 쉽게 기본값을 초기화 할 수 있다.</p>
-<p>그리고 주의해야 할 점은 threadlocal을 사용할 필드는 static으로 전언해야 한다는 점이다.<br>아래 예시코드에서 static이 빠질 경우, 동작은 같지만 각 스레드마다 각각의 threadlocal이 생겨서<br>총 10개의 다른 thread-local이 생긴다.</p>
+<h6 id="set-과-withInitial-혼동-주의"><a href="#set-과-withInitial-혼동-주의" class="headerlink" title="set()과 withInitial() 혼동 주의"></a><strong>set()과 withInitial() 혼동 주의</strong></h6><p>그리고 주의해야 할 점은 threadlocal을 사용할 필드는 static으로 전언해야 한다는 점이다.<br>아래 예시코드에서 static이 빠질 경우, 동작은 같지만 각 스레드마다 각각의 threadlocal이 생겨서<br>총 10개의 다른 thread-local이 생긴다.</p>
+<p>람다식이 도입된 자바 8 전까지는 다음과 같이 기본값을 initialValue()를 오버라이딩하여 구현있어야 했지만.<br>자바 8 이후 부터는 더 쉽게 기본값을 초기화 할 수 있다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before java 8</span></span><br><span class="line">ThreadLocal&lt;String&gt; staticStr = <span class="keyword">new</span> ThreadLocal&lt;String&gt;()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> String <span class="title">initialValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Thread Scope String"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// after java 8</span></span><br><span class="line">ThreadLocal&lt;String&gt; staticStr = ThreadLocal.withInitial(() -&gt; <span class="string">"Thread Scope String"</span>);</span><br></pre></td></tr></table></figure>
 
 <p>예시 코드)</p>
