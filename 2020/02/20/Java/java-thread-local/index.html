@@ -6,20 +6,26 @@
     
 
     
-    <title>Archive: 2019/12 | SightStudio</title>
+    <title>[Java] Thread Local 이란 | SightStudio</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="서버 개발자 지망 취준생의 블로그입니다.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SightStudio">
-<meta property="og:url" content="https://sightstudio.github.io/archives/2019/12/index.html">
+    <meta name="keywords" content="java" />
+    
+    <meta name="description" content="목차.  1. ThreadLocal이란 2. 사용 방법 3. 실제 ThreadLocal 사용 사례 4. Reference  오늘은 꽤 오래전에 (java 1.2)추가된 기능이지만, 잘 모르고 있었던 ThreadLocal에 대해서 알아보려한다.ThreadLocal을 사용하면 Thread 단위로 변수를 할당할 수 있다. 1. ThreadLocal이란이름 그대로">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Java] Thread Local 이란">
+<meta property="og:url" content="https://sightstudio.github.io/2020/02/20/Java/java-thread-local/index.html">
 <meta property="og:site_name" content="SightStudio">
-<meta property="og:description" content="서버 개발자 지망 취준생의 블로그입니다.">
+<meta property="og:description" content="목차.  1. ThreadLocal이란 2. 사용 방법 3. 실제 ThreadLocal 사용 사례 4. Reference  오늘은 꽤 오래전에 (java 1.2)추가된 기능이지만, 잘 모르고 있었던 ThreadLocal에 대해서 알아보려한다.ThreadLocal을 사용하면 Thread 단위로 변수를 할당할 수 있다. 1. ThreadLocal이란이름 그대로">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sightstudio.github.io/asset/img/code/java-01/threadLocal/example-result.png">
+<meta property="article:published_time" content="2020-02-20T08:16:59.000Z">
+<meta property="article:modified_time" content="2020-02-21T19:36:24.331Z">
 <meta property="article:author" content="Sight">
-<meta property="article:tag" content="SightStudio">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sightstudio.github.io/asset/img/code/java-01/threadLocal/example-result.png">
     
 
     
@@ -154,129 +160,218 @@ ga('send', 'pageview');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive: 2019/12
+    <a class="page-title-link" href="/categories/language/">language</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/language/Java/">Java</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-Java/java-thread-local" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2019" class="archive-year"><i class="icon fa fa-calendar-o"></i>2019</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2019/12/29/Java/javaStringPool/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/asset/img/other/java/string-pool-img.png)" alt="[Java] Byte Code로 본 String" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://sightstudio.github.io/2019/12/29/Java/javaStringPool/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/language/">language</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/language/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2019-12-29T06:14:48.000Z" itemprop="datePublished">2019-12-29</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/12/29/Java/javaStringPool/">[Java] Byte Code로 본 String</a>
+        [Java] Thread Local 이란
         </h1>
     
 
-        <p class="article-excerpt">
-            알면 좋고 몰라도 상관없는 글연관된 주제
-
-Object의 Equality와 Identity
-Java String Pool
-Java Byte Code
-
-다음 코드의 정답을 아신다면 이글은 넘어가도 될 것이다.12345678910111213141516171819202122232425262728293031323334353637383940414243public c
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/2020/02/20/Java/java-thread-local/" class="article-date">
+         <time datetime="2020-02-20T08:16:59.000Z" itemprop="datePublished">2020-02-20</time>
+      </a>
     </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/asset/img/life/macbook.jpg)" alt="블로그시작" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://sightstudio.github.io/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/">0</span>
-    
-</span>
 
 
-    
-</a>
+                
 
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/%EC%9D%BC%EC%83%81/">일상</a>
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/" rel="tag">java</a>
+    </div>
+
+                
+
+                
+
             </div>
-            <div class="date"><time datetime="2019-12-28T17:15:28.000Z" itemprop="datePublished">2019-12-29</time></div>
-        </div>
         
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/12/29/%EC%9D%BC%EC%83%81/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%8B%9C%EC%9E%91/">블로그시작</a>
-        </h1>
-    
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>목차.</p>
+<ul>
+<li><a href="#item-1">1. ThreadLocal이란</a></li>
+<li><a href="#item-2">2. 사용 방법</a></li>
+<li><a href="#item-3">3. 실제 ThreadLocal 사용 사례</a></li>
+<li><a href="#item-4">4. Reference</a></li>
+</ul>
+<p>오늘은 꽤 오래전에 <span style="font-size: 0.7em;text-decoration:line-through;font-weight: bold;">(java 1.2)</span>추가된 기능이지만, 잘 모르고 있었던 <strong>ThreadLocal</strong>에 대해서 알아보려한다.<br><strong>ThreadLocal</strong>을 사용하면 Thread 단위로 변수를 할당할 수 있다.</p>
+<h3 id="1-ThreadLocal이란"><a href="#1-ThreadLocal이란" class="headerlink" title="1. ThreadLocal이란"></a><span id="item-1">1. ThreadLocal이란</span></h3><p>이름 그대로 Thread - Scope레벨의 저장 공간을 제공한다.<br>이 기능이 있으면 한 스레드 내부에서만 처리하는 상황이 올 경우에<br>굳이 계속 다른 함수 파라미터로 값을 넘겨주지 않아도 된다.</p>
+<p>내부적으로는 HashMap&lt;Thread 고유 해시코드, value&gt; 형태로 데이터를 관리한다.</p>
+<p>대표적으로 전통적인 Spring MVC가 1 요청 == 1 Thread로 처리를 하는데<br>이러한 상황에서 스레드 내에서 안전하게 보관되어야 하는 데이터들이 있을 때 유용하게 사용할 수 있다.<br>eg) Spring Security, Spring Transaction Context…</p>
+<h3 id="2-사용-방법"><a href="#2-사용-방법" class="headerlink" title="2. 사용 방법"></a><span id="item-2">2. 사용 방법</span></h3><table>
+<thead>
+<tr>
+<th>메서드</th>
+<th>용도</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>set()</td>
+<td><strong>‘현재 스레드’</strong>의 로컬 변수에 값을 저장한다.</td>
+<td></td>
+</tr>
+<tr>
+<td>get()</td>
+<td><strong>‘현재 스레드’</strong>의 로컬변수 값을 가져온다.</td>
+<td></td>
+</tr>
+<tr>
+<td>remove()</td>
+<td><strong>‘현재 스레드’</strong>의 값을 제거하고 <strong>‘기본값’</strong>으로 돌린다.</td>
+<td></td>
+</tr>
+<tr>
+<td>withInitial()</td>
+<td>람다식을 통해 ThreadLocal <strong>‘기본값’</strong>을 초기화한다.</td>
+<td><strong>since java 8</strong></td>
+</tr>
+</tbody></table>
+<h6 id="set-과-withInitial-혼동-주의"><a href="#set-과-withInitial-혼동-주의" class="headerlink" title="set()과 withInitial() 혼동 주의"></a><strong>set()과 withInitial() 혼동 주의</strong></h6><p>람다식이 도입된 자바 8 전까지는 다음과 같이 기본값을 initialValue()를 오버라이딩하여 구현있어야 했지만.<br>자바 8 이후 부터는 더 쉽게 기본값을 초기화 할 수 있다.</p>
+<p>그리고 주의해야 할 점은 threadlocal을 사용할 필드는 static으로 전언해야 한다는 점이다.<br>아래 예시코드에서 static이 빠질 경우, 동작은 같지만 각 스레드마다 각각의 threadlocal이 생겨서<br>총 10개의 다른 thread-local이 생긴다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before java 8</span></span><br><span class="line">ThreadLocal&lt;String&gt; staticStr = <span class="keyword">new</span> ThreadLocal&lt;String&gt;()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> String <span class="title">initialValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Thread Scope String"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// after java 8</span></span><br><span class="line">ThreadLocal&lt;String&gt; staticStr = ThreadLocal.withInitial(() -&gt; <span class="string">"Thread Scope String"</span>);</span><br></pre></td></tr></table></figure>
 
-        <p class="article-excerpt">
-            블로그 한다면서 와버린… 대학교 졸업 시즌 ㅜㅜ한학기 더하지만 지금이라도 블로그를 시작합니다..
-ㅜㅜ
-와! 맥북삿다!
+<p>예시 코드)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> ThreadLocal&lt;String&gt; staticStr = ThreadLocal.withInitial(() -&gt; <span class="string">"Static String"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String threadName = Thread.currentThread().getName();</span><br><span class="line">        String curValue   = staticStr.get();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Thread Name= "</span> + threadName + <span class="string">" default value = "</span> + curValue);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">3000</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        staticStr.set(curValue + <span class="string">" "</span> + threadName);</span><br><span class="line">        System.out.println(<span class="string">"Thread Name= "</span> + threadName + <span class="string">" updated value = "</span> + staticStr.get());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ThreadLocalTest thread = <span class="keyword">new</span> ThreadLocalTest();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Thread t = <span class="keyword">new</span> Thread(thread, <span class="string">""</span>+i);</span><br><span class="line">            Thread.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">1000</span>));</span><br><span class="line">            t.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>실행 결과)<br>예상한대로 Thread별로 각기 다른 결과가 나온다.<br>만약 위의 코드 22번쨰 라인에 <strong>staticStr.remove()</strong>를 썻다면 값이 사라지는게 아니라.<br>기존 초기화된 값인 “Static String”이 나왔을 것이다.</p>
+<p><img src="/asset/img/code/java-01/threadLocal/example-result.png" alt="실행 결과"></p>
+<h3 id="3-실제-ThreadLocal-사용-사례"><a href="#3-실제-ThreadLocal-사용-사례" class="headerlink" title="3. 실제 ThreadLocal 사용 사례"></a><span id="item-3">3. 실제 ThreadLocal 사용 사례</span></h3><p><strong>1. Spring Security</strong> <strong><a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#securitycontextholder-securitycontext-and-authentication-objects" target="_blank" rel="noopener">[공식 문서]</a></strong><br><strong>[중요] - Spring MVC 한정</strong></p>
+<p>위의 공식 문서를 보면 <strong>Spring Security</strong>의 근본이 되는 <strong>SecurityContextHolder</strong> 오브젝트는<br><strong>ThreadLocal</strong>를 사용하여 세부 정보를 저장한다고 되어있다.</p>
+<p>이는 전통적인 Spring MVC에서 1개의 스레드가 1개의 요청만을 처리하기 때문이다.<br>리엑티브한 환경, 예를 들어 1개의 스레드가 여러개의 요청을 처리하는 <strong>Spring WebFlux</strong>에서는<br><strong>ThreadLocal</strong>에 저장하지 않는 <strong>ReactiveSecurityContextHolder</strong>라는 아예 새로운 ContextHolder를 사용한다.<br>(공식 문서에서는 Java Swing Client를 예시로 이점을 설명한다.)</p>
+<p><del>이부분은 웹플럭스를 공부하고 다시 봐야겠다. ~</del><a href="https://stackoverflow.com/questions/46793245/how-preauthorize-is-working-in-an-reactive-application-or-how-to-live-without-t" target="_blank" rel="noopener">..</a><a href="https://www.naturalprogrammer.com/blog/16393/spring-security-get-current-user-programmatically" target="_blank" rel="noopener">..</a><a href="https://docs.spring.io/spring-security/site/docs/current/reference/html/jc-erms.html" target="_blank" rel="noopener">..</a></p>
+<hr>
+<h3 id="👍-reference"><a href="#👍-reference" class="headerlink" title=" 👍 reference "></a><span id="item-4"> 👍 reference </span></h3><ul>
+<li><a href="https://www.baeldung.com/java-threadlocal" target="_blank" rel="noopener">[blog] baeldung - An Introduction to ThreadLocal in Java</a></li>
+<li><a href="https://javacan.tistory.com/entry/ThreadLocalUsage" target="_blank" rel="noopener">[blog] 자바캔 - ThreadLocal</a></li>
+</ul>
 
-
-        </p>
-    </div>
-</article>
-    
         </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://sightstudio.github.io/2020/02/20/Java/java-thread-local/" data-id="ck6uhapzn0000glr39ox33lca" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Sight"
+        },
+        "headline": "[Java] Thread Local 이란",
+        "image": "https://sightstudio.github.io/asset/img/code/java-01/threadLocal/example-result.png",
+        "keywords": "java",
+        "genre": "language Java",
+        "datePublished": "2020-02-20",
+        "dateCreated": "2020-02-20",
+        "dateModified": "2020-02-22",
+        "url": "https://sightstudio.github.io/2020/02/20/Java/java-thread-local/",
+        "description": "목차.
+
+1. ThreadLocal이란
+2. 사용 방법
+3. 실제 ThreadLocal 사용 사례
+4. Reference
+
+오늘은 꽤 오래전에 (java 1.2)추가된 기능이지만, 잘 모르고 있었던 ThreadLocal에 대해서 알아보려한다.ThreadLocal을 사용하면 Thread 단위로 변수를 할당할 수 있다.
+1. ThreadLocal이란이름 그대로",
+        "wordCount": 811
+    }
+</script>
+
+</article>
+
+    <section id="comments">
     
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
 
 
-    </div></section>
+    
+    </section>
 
 
 
@@ -314,6 +409,19 @@ Java Byte Code
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2020/02/16/%EC%9D%BC%EC%83%81/naver-webtoon-intern/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">[인턴] 네이버 웹툰 상반기 서버 개발인턴</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -537,11 +645,13 @@ Java Byte Code
     var disqus_shortname = 'https-sightstudio-github-io-2';
     
     
+    var disqus_url = 'https://sightstudio.github.io/2020/02/20/Java/java-thread-local/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
