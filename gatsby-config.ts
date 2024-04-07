@@ -8,7 +8,7 @@ const config: GatsbyConfig = {
     // You can overwrite values here that are used for the SEO component
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-minimal-blog/gatsby-config.mjs
-    siteTitle: `Minimal Blog`,
+    siteTitle: `SightStudio`,
     siteTitleAlt: `Minimal Blog - Gatsby Theme`,
     siteHeadline: `Minimal Blog - Gatsby Theme from @lekoarts`,
     siteUrl: `https://minimal-blog.lekoarts.de`,
@@ -21,8 +21,10 @@ const config: GatsbyConfig = {
   plugins: [
     {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
+
       // See the theme's README for all available options
       options: {
+        formatString: `YYYY.MM.DD`,
         navigation: [
           {
             title: `Blog`,
@@ -112,16 +114,17 @@ const config: GatsbyConfig = {
                   custom_elements: [{ "content:encoded": content }],
                 }
               }),
-            query: `{
-  allPost(sort: {date: DESC}) {
-    nodes {
-      title
-      date(formatString: "MMMM D, YYYY")
-      excerpt
-      slug
-    }
-  }
-}`,
+            query:
+            `{
+                allPost(sort: {date: DESC}) {
+                    nodes {
+                      title
+                      date(formatString: "yyyy-mm-dd")
+                      excerpt
+                      slug
+                    }
+                }
+            }`,
             output: `rss.xml`,
             title: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
           },
