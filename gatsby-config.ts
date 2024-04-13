@@ -11,10 +11,10 @@ const config: GatsbyConfig = {
     siteTitle: `SightStudio`,
     siteTitleAlt: `Minimal Blog - Gatsby Theme`,
     siteHeadline: `Minimal Blog - Gatsby Theme from @lekoarts`,
-    siteUrl: `https://minimal-blog.lekoarts.de`,
+    siteUrl: `https://SightStudio.github.io`,
     siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
-    siteImage: `/banner.jpg`,
-    siteLanguage: `en`,
+    siteImage: `/banner.png`,
+    siteLanguage: `kr`,
     author: `@lekoarts_de`,
   },
   trailingSlash: `always`,
@@ -30,19 +30,11 @@ const config: GatsbyConfig = {
             title: `Blog`,
             slug: `/blog`,
           },
-          {
-            title: `About`,
-            slug: `/about`,
-          },
         ],
         externalLinks: [
           {
-            name: `Twitter`,
-            url: `https://twitter.com/lekoarts_de`,
-          },
-          {
-            name: `Homepage`,
-            url: `https://www.lekoarts.de?utm_source=minimal-blog&utm_medium=Starter`,
+            name: `Github`,
+            url: `https://github.com/SightStudio`,
           },
         ],
       },
@@ -101,7 +93,7 @@ const config: GatsbyConfig = {
             }: {
               query: { allPost: IAllPost; site: { siteMetadata: ISiteMetadata } }
             }) =>
-              allPost.nodes.map((post) => {
+              allPost.nodes.map((post: IPost) => {
                 const url = site.siteMetadata.siteUrl + post.slug
                 const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`
 
@@ -116,14 +108,14 @@ const config: GatsbyConfig = {
               }),
             query:
             `{
-                allPost(sort: {date: DESC}) {
-                    nodes {
-                      title
-                      date(formatString: "yyyy-mm-dd")
-                      excerpt
-                      slug
-                    }
+              allPost(sort: {date: DESC}) {
+                nodes {
+                  title
+                  date(formatString: "MMMM D, YYYY")
+                  excerpt
+                  slug
                 }
+              }
             }`,
             output: `rss.xml`,
             title: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
