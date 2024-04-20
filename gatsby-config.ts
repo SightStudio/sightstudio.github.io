@@ -9,16 +9,24 @@ const config: GatsbyConfig = {
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-minimal-blog/gatsby-config.mjs
     siteTitle: `SightStudio`,
-    siteTitleAlt: `Minimal Blog - Gatsby Theme`,
-    siteHeadline: `Minimal Blog - Gatsby Theme from @lekoarts`,
+    siteTitleAlt: `SightStudio - Minimal Blog`,
+    siteHeadline: `SightStudio - Minimal Blog`,
     siteUrl: `https://SightStudio.github.io`,
     siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
     siteImage: `/banner.png`,
     siteLanguage: `kr`,
-    author: `@lekoarts_de`,
+    author: `@SightStudio`,
   },
   trailingSlash: `always`,
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+        options: {
+            trackingIds: [
+                'G-WJ4R25MTEQ', // Google Analytics / GA
+            ],
+        },
+    },
     {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
 

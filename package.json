@@ -21,6 +21,7 @@
     "@lekoarts/gatsby-theme-minimal-blog": "^6.2.1",
     "gatsby": "^5.13.3",
     "gatsby-plugin-feed": "^5.13.1",
+    "gatsby-plugin-google-gtag": "^5.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-sitemap": "^6.13.1",
     "gatsby-plugin-webpack-statoscope": "^1.0.3",
@@ -32,7 +33,7 @@
     "@types/react": "^18.2.51",
     "@types/react-dom": "^18.2.18",
     "cross-env": "^7.0.3",
-    "typescript": "^5.3.3",
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.3.3"
   }
 }
