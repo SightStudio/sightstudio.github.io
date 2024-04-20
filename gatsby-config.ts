@@ -23,7 +23,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-google-gtag`,
         options: {
             trackingIds: [
-                'G-WJ4R25MTEQ', // Google Analytics / GA
+                'G-JYSV435PFQ', // Google Analytics / GA
             ],
         },
     },
